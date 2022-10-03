@@ -25,3 +25,18 @@ def singleAPI(request, pk):
     krosovka = Krosovka.objects.get(id=pk)
     serializers = KrosovkaAPI(krosovka, many=False)
     return Response(serializers.data)
+
+@api_view(["GET"])
+@permission_classes((permissions.AllowAny, ))
+def CarsAPI(request):
+    Cars  = Cars.objects.all()
+    serializers = CarsAPI(Cars, many=True)
+    return Response(serializers.data)
+
+
+@api_view(["GET"])
+@permission_classes((permissions.AllowAny, ))
+def singleApi(request, pk):
+    cars = Cars.objects.get(id=pk)
+    serializers = CarsAPI(cars, many=False)
+    return Response(serializers.data)

@@ -9,3 +9,11 @@ class Krosovka(models.Model):
 
     def __str__(self):
         return f"{self.brand} nomli Krosovka"
+
+class Cars(models.Model):
+    change = models.CharField(max_length=100)
+    number = models.IntegerField(default=22)
+  
+
+    def __str__(self):
+        return f"{self.number} number"
