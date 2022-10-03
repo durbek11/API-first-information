@@ -28,15 +28,15 @@ def singleAPI(request, pk):
 
 @api_view(["GET"])
 @permission_classes((permissions.AllowAny, ))
-def CarsAPI(request):
-    Cars  = Cars.objects.all()
-    serializers = CarsAPI(Cars, many=True)
+def singlePAivewewe(request):
+    cars  = Cars.objects.all()
+    serializers = CarsAPI(cars, many=True)
     return Response(serializers.data)
 
 
 @api_view(["GET"])
 @permission_classes((permissions.AllowAny, ))
-def singleApi(request, pk):
-    cars = Cars.objects.get(id=pk)
-    serializers = CarsAPI(cars, many=False)
+def singleApai(request, pk):
+    mobile = Cars.objects.get(id=pk)
+    serializers = CarsAPI(mobile, many=False)
     return Response(serializers.data)
