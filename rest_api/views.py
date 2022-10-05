@@ -11,6 +11,7 @@ from rest_framework import permissions
 def home(request):
     return render(request, 'home.html')
 
+# API to`liq chiqarish`
 @api_view(["GET"])
 @permission_classes((permissions.AllowAny, ))
 def KrosovkaMakeAPI(request):
@@ -18,7 +19,7 @@ def KrosovkaMakeAPI(request):
     serializers = KrosovkaAPI(korosvka, many=True)
     return Response(serializers.data)
 
-
+# Api ni ID orqali chiqarish(alohida alohida qilib chiqarish)
 @api_view(["GET"])
 @permission_classes((permissions.AllowAny, ))
 def singleAPI(request, pk):
@@ -40,3 +41,24 @@ def singleApai(request, pk):
     mobile = Cars.objects.get(id=pk)
     serializers = CarsAPI(mobile, many=False)
     return Response(serializers.data)
+
+# post joylash, (malumot joylash)
+@api_view(["POST"])
+@permission_classes((permissions.AllowAny, ))
+def malumotJoylash(request,):
+    serializers = KrosovkaAPI(data=request.data)
+    
+    if serializers.is_valid():
+        serializers.save()
+        return Response(serializers.data)
+
+# post joylash, (malumot joylash)
+@api_view(["POST"])
+@permission_classes((permissions.AllowAny, ))
+def malumotUpdate(request, pk):
+    krosovka = Krosovka.objects.get(id=pk)
+    serializers = KrosovkaAPI(instance=krosovka, data=request.data)
+    
+    if serializers.is_valid():
+        serializers.save()
+        return Response(serializers.data)

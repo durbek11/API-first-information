@@ -9,4 +9,6 @@ urlpatterns = [
     path('Cars/', singlePAivewewe, name='singlePAivewewe'),
     path('krosovka-api/<int:pk>/', singleAPI),
     path('cars-api/<int:pk>/', singleApai),
+    path('create/', malumotJoylash),
+    path('update/<int:pk>/', malumotUpdate)
 ]
