@@ -52,7 +52,7 @@ def malumotJoylash(request,):
         serializers.save()
         return Response(serializers.data)
 
-# post joylash, (malumot joylash)
+# POST update, (malumot taxrirlash)
 @api_view(["POST"])
 @permission_classes((permissions.AllowAny, ))
 def malumotUpdate(request, pk):
@@ -62,3 +62,12 @@ def malumotUpdate(request, pk):
     if serializers.is_valid():
         serializers.save()
         return Response(serializers.data)
+
+# POST delete, (malumptlarni ochirish)
+@api_view(["DELETE"])
+@permission_classes((permissions.AllowAny, ))
+def malumotDelete(request, pk):
+    krosovka = Krosovka.objects.get(id=pk)
+    krosovka.delete()
+
+    return Response("malumot o`chirildi")

@@ -10,5 +10,6 @@ urlpatterns = [
     path('krosovka-api/<int:pk>/', singleAPI),
     path('cars-api/<int:pk>/', singleApai),
     path('create/', malumotJoylash),
-    path('update/<int:pk>/', malumotUpdate)
+    path('update/<int:pk>/', malumotUpdate),
+    path('delete/<int:pk>/', malumotDelete)
 ]
