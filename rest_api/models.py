@@ -17,3 +17,13 @@ class Cars(models.Model):
 
     def __str__(self):
         return f"{self.number} number"
+
+class Products(models.Model):
+    apple = models.CharField(max_length=100)
+    apple_price = models.IntegerField(default=11)
+    banana = models.IntagerField(max_length=100)
+    banana_price = models.CharField(default=22)
+  
+
+    def __str__(self):
+        return f"{self.apple} mevalar nomi"
