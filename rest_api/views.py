@@ -29,6 +29,20 @@ def singleAPI(request, pk):
 
 @api_view(["GET"])
 @permission_classes((permissions.AllowAny, ))
+def FruitsAPI(request):
+    fruit  = Products.objects.all()
+    serializers = ProductsAPI(fruit, many=True)
+    return Response(serializers.data)
+
+@api_view(["GET"])
+@permission_classes((permissions.AllowAny, ))
+def Fruit(request, pk):
+    fruit = Products.objects.get(id=pk)
+    serializers = ProductsAPI(fruit, many=False)
+    return Response(serializers.data)
+
+@api_view(["GET"])
+@permission_classes((permissions.AllowAny, ))
 def singlePAivewewe(request):
     cars  = Cars.objects.all()
     serializers = CarsAPI(cars, many=True)
@@ -71,3 +85,5 @@ def malumotDelete(request, pk):
     krosovka.delete()
 
     return Response("malumot o`chirildi")
+
+
