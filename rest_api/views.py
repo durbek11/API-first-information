@@ -6,6 +6,8 @@ from .models import *
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import permissions
+from rest_framework import generics
+from rest_framework import filters
 
 
 def home(request):
@@ -25,20 +27,6 @@ def KrosovkaMakeAPI(request):
 def singleAPI(request, pk):
     krosovka = Krosovka.objects.get(id=pk)
     serializers = KrosovkaAPI(krosovka, many=False)
-    return Response(serializers.data)
-
-@api_view(["GET"])
-@permission_classes((permissions.AllowAny, ))
-def FruitsAPI(request):
-    fruit  = Products.objects.all()
-    serializers = ProductsAPI(fruit, many=True)
-    return Response(serializers.data)
-
-@api_view(["GET"])
-@permission_classes((permissions.AllowAny, ))
-def Fruit(request, pk):
-    fruit = Products.objects.get(id=pk)
-    serializers = ProductsAPI(fruit, many=False)
     return Response(serializers.data)
 
 @api_view(["GET"])
@@ -87,3 +75,29 @@ def malumotDelete(request, pk):
     return Response("malumot o`chirildi")
 
 
+# Rest API filter
+@api_view(["GET"])
+@permission_classes((permissions.AllowAny, ))
+def filterKrosovka(request):
+    filter = Krosovka.objects.filter(turi='BAZM')
+    
+    serializers = KrosovkaAPI(filter, many=True)
+    return Response(serializers.data)
+
+
+@api_view(["GET"])
+@permission_classes((permissions.AllowAny, ))
+def filterKrosovkabro(request):
+    filter = Krosovka.objects.filter(turi='SPORT')
+    serializers = KrosovkaAPI(filter, many=True)
+    return Response(serializers.data)
+
+# search API
+
+class KrosovkaSearchAPI(generics.ListAPIView):
+    queryset = Krosovka.objects.all()
+    serializer_class = KrosovkaAPI
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['brand', 'color']
+
+krosovkaSearch = KrosovkaSearchAPI.as_view()

@@ -11,8 +11,3 @@ class CarsAPI(serializers.ModelSerializer):
     class Meta:
         model = Cars
         fields = '__all__'
-
-class ProductsAPI(serializers.ModelSerializer):
-    class Meta:
-        model = Products
-        fields = '__all__'
