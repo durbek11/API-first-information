@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\IT-CENTER-Izboskan\Desktop\Django-API\.venv
+set VIRTUAL_ENV=C:\Users\Lenovo\Desktop\API-first-information-master\.venv
 
 if not defined PROMPT set PROMPT=$P$G
 
