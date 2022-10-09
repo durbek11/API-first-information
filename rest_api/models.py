@@ -24,3 +24,11 @@ class Cars(models.Model):
 
     def __str__(self):
         return f"{self.number} number"
+
+class products(models.Model):
+    maxsulot_nomi = models.CharField(max_length=100)
+    narxi = models.IntegerField(default=22)
+  
+
+    def __str__(self):
+        return f"{self.narxi} summa"
